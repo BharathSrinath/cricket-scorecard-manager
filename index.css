@@ -1,0 +1,380 @@
+/* Removing the default values */
+/* ----------------------------------------------------- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+*{
+    box-sizing: border-box;
+}
+/* ----------------------------------------------------- */
+
+/* Code starts here */
+
+body{
+  background-image: url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=80&w=1605&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+h1.title, h1.toss-title, h1.toss-ques{
+  color: white;
+  position: absolute; 
+}
+
+/* .homepage-1 deals with team names */
+div.homepage-1{
+  width: 90%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+}
+
+/* .homepage-2 deals with fromat of the match and number of players */
+div.homepage-2{
+  width: 90%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* homepage-3 deals with list of players on both sides */
+div.homepage-3{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  visibility: hidden;
+  opacity: 0;
+}
+
+div.homepage-4{
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  position: absolute; 
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* .team-1-players and .team-2-players Will be added by eventListener when the second next button is clicked */
+div.team-1-players, div.team-2-players{
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .transition-active-pageload will be added by eventListener once the page is loaded */
+h1.transition-active-pageload{
+  transform: translateY(-200%);
+  transition: transform 1s ease-in-out
+}
+
+h1.transition-active-tossload{
+  transform: translateY(-300%);
+  transition: transform 1s ease-in-out
+}
+
+/* Setting the opacity to 0 to give a transitioning effect after the page loads with 1.5 seconds delay */
+.teamname1, .teamname2, .firstnext, .toss-ques, .t1-captain-toss, .t2-captain-toss, .coin-heads, .coin-tails, .heads, .tails, .letsplay, .bat, .bowl, .toss-final{
+  opacity: 0;
+}
+
+/* Customisation for all the inputs and buttons */
+.t-active-t1, .t-active-t2, .t-active-next1, .t-active-next2, .t-active-next3, .t-active-letsplay{
+  width: 30%;
+  padding: 0.75%;
+  margin: 0.5%;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 20px;
+  border-color: rgb(24, 150, 108);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+/* Additional customisation for buttons */
+.t-active-next1, .t-active-next2, .t-active-next3, .t-active-letsplay{
+  margin-top: 30px;
+  padding: 5px;
+  text-decoration: none;
+  width: 15%;
+  color: white;
+  background: none;
+  transition: color 0.25s, border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+/* Additional customisation for buttons when mouse hovers or focussed with keyboard */
+.t-active-next1:hover, .t-active-next1:focus, .t-active-next2:hover, .t-active-next2:focus, .t-active-next3:hover, .t-active-next3:focus, .t1-captain-toss-active:hover, .t1-captain-toss-active:focus, .t2-captain-toss-active:hover .t2-captain-toss-active:focus, .heads-active:hover, .heads-active:focus, .tails-active:hover, .tails-active:focus, .bat:hover, .bat:focus, .bowl:hover, .bowl:focus, .t-active-letsplay:hover, .t-active-letsplay:focus {
+  color: white;
+  background-color: rgb(13,110,253);
+  box-shadow: 0 0.5em 0.5em -0.4em rgb(0, 255, 234);
+  transform: translateX(-4px) translateY(-4px);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* removing certain customisations while the buttons are active (when mouse is clicked but not released) */
+.t-active-next1:active, .t-active-next2:active, .t-active-letsplay:active, .t1-captain-toss-active:active, .t2-captain-toss-active:active, .heads-active:active, .tails-active:active, .bat-active:active, .bowl-active:active {
+  color: white;
+  background-color: rgb(13, 110, 253);
+  box-shadow: none;
+  transform: none;
+  font-weight: 500;
+}
+
+.t-active-letsplay{
+  background-color: rgb(13, 110, 253);
+  position: absolute;
+  transition: opacity 2.5s;
+}
+
+.toss-final-active{
+  color: white;
+  position: absolute;
+  opacity: 1;
+  transform: translateY(-75%);
+  transition: all 1s;
+  text-align: center;
+}
+
+/* .homepage-1-hide will be added when first next button is clicked and .homepage-2-hide will added when second next button is clicked */
+/* This is to remove the existing contents and new contents will be added with evenListeners */
+div.homepage-1-hide, div.homepage-2-hide, div.homepage-3-hide{
+  display:none;
+}
+
+/* text will be displayed when the input fields are left empty */
+.req-field-text{
+  color: red;
+}
+
+.no-of-overs, .no-of-players{
+  position: relative;
+  width: 20%;
+  padding: 0.75%;
+  margin: 0.5%;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 20px;
+  border-color: rgb(24, 150, 108);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: pointer;
+}
+
+.team-1-players-name, .team-2-players-name{
+  width: 70%;
+  padding: 1%;
+  margin: 0.75%;
+  text-align: center;
+  border: 2px solid;
+  transform: skewX(-10deg);
+  border-color: rgb(24, 150, 108);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+/* .homepage-2-visible will be added when first next button is clicked and .homepage-3-visible will be added when second next button is clicked */
+div.homepage-2-visible, div.homepage-3-visible, div.homepage-4-visible{
+  visibility: visible;
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+/* title for the team will be added when second next button is clicked */
+.team-name-title{
+  color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 5%;
+  font-weight: 500;
+  font-size:2em;
+}
+
+.toss-ques-active{
+  color: white;
+  font-size: 3em;
+  opacity: 1;
+  transform: translateY(-250%);
+  transition: all 1s ease-in-out;
+}
+
+.coin-heads, .coin-tails{
+  width: 0;
+  height: 0;
+}
+
+.homepage-4-cap-btns, .toss-call, .toss-decision{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.toss-call{
+  position: relative;
+}
+
+.t1-captain-toss-active, .t2-captain-toss-active, .heads-active, .tails-active, .bat-active, .bowl-active{
+  width: 30%;
+  height: 40px;
+  padding: 0.75%;
+  margin: 10%;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 10px;
+  color: white;
+  border-color: rgb(24, 150, 108);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  background: none;
+}
+
+.heads-active, .tails-active, .bat-active, .bowl-active{
+  width: 15%;
+  margin: 4%;
+}
+
+.bat-active, .bowl-active{
+  background-color: rgb(13,110,253);
+}
+
+.coin-heads-active, .coin-tails-active{
+  display: flex;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+
+.t1-captain-toss-active:hover, .t1-captain-toss-active:focus, .t2-captain-toss-active:hover, .t2-captain-toss-active:focus{
+  color: white;
+  background-color: rgb(13,110,253);
+  cursor: pointer;
+  font-weight: bolder;
+}
+
+.bat-hide{
+  transform: translateX(-200px);
+  opacity: 0;
+  transition: all 2s;
+}
+
+.bowl-hide{
+transform: translateX(200px);
+  opacity: 0;
+  transition: all 2s;
+}
+
+.tossDecision-remove, .coin-heads-remove, .coin-tails-remove{
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: all 2s;
+}
+
+/* When the madatory inputs are left empty, this simple animation will kick in */
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-5px);
+  }
+  20% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  40% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-5px);
+  }
+  60% {
+    transform: translateX(5px);
+  }
+  70% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(5px);
+  }
+  90% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.input-shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
